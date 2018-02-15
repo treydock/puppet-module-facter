@@ -341,7 +341,7 @@ describe 'facter' do
   }
 }
 '
-      })      
+      })
     }
   end
 

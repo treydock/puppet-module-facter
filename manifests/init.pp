@@ -92,7 +92,7 @@ class facter (
     require => Exec["mkdir_p-${facter_conf_dir}"],
   }
 
-  unless empty($facter_conf) {
+  if ! empty($facter_conf) {
     # Template uses:
     # - $facter_conf
     file { "${facter_conf_dir}/${facter_conf_name}":
