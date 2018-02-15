@@ -72,9 +72,9 @@ describe 'facter' do
       it { should contain_file('facts_file').with({
           'ensure'  => 'file',
           'path'    => 'C:\ProgramData\PuppetLabs\facter\facts.d\facts.txt',
-          'owner'   => 'BUILTIN\Administrators',
-          'group'   => 'BUILTIN\Administrators',
-          'mode'    => '0644',
+          'owner'   => 'NT AUTHORITY\SYSTEM',
+          'group'   => 'NT AUTHORITY\SYSTEM',
+          'mode'    => nil,
         })
       }
 
@@ -82,9 +82,9 @@ describe 'facter' do
         should contain_file('facts_d_directory').with({
           'ensure'  => 'directory',
           'path'    => 'C:\ProgramData\PuppetLabs\facter\facts.d',
-          'owner'   => 'BUILTIN\Administrators',
-          'group'   => 'BUILTIN\Administrators',
-          'mode'    => '0755',
+          'owner'   => 'NT AUTHORITY\SYSTEM',
+          'group'   => 'NT AUTHORITY\SYSTEM',
+          'mode'    => nil,
           'purge'   => false,
           'recurse' => false,
           'require' => 'Exec[mkdir_p-C:\ProgramData\PuppetLabs\facter\facts.d]',
@@ -108,9 +108,9 @@ describe 'facter' do
       it {
         should contain_file('C:\ProgramData\PuppetLabs\facter\etc').with({
           'ensure'  => 'directory',
-          'owner'   => 'BUILTIN\Administrators',
-          'group'   => 'BUILTIN\Administrators',
-          'mode'    => '0755',
+          'owner'   => 'NT AUTHORITY\SYSTEM',
+          'group'   => 'NT AUTHORITY\SYSTEM',
+          'mode'    => nil,
           'require' => 'Exec[mkdir_p-C:\ProgramData\PuppetLabs\facter\etc]',
         })
       }
