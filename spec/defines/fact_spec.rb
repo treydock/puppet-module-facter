@@ -1,5 +1,6 @@
 require 'spec_helper'
 describe 'facter::fact' do
+  let(:facts) { { :os => { :family => 'RedHat' } } }
 
   context 'with fact and facts_dir specified' do
     let(:title) { 'fact1' }
