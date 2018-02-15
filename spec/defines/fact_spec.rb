@@ -54,4 +54,34 @@ describe 'facter::fact' do
       })
     }
   end
+
+  on_supported_os({
+    :supported_os => [
+      {
+        "operatingsystem" => "windows",
+        "operatingsystemrelease" => ["2012 R2"],
+      }
+    ]
+  }).each do |os, facts|
+    context "on #{os}" do
+      let(:facts) { facts }
+      let(:title) { 'fact2' }
+      let(:params) do
+        {
+          :fact => 'fact2',
+          :value => 'fact2value',
+        }
+      end
+
+      it { should_not contain_file('facts_file_fact2') }
+
+      it {
+        should contain_file_line('fact_line_fact2').with({
+          'name' => 'fact_line_fact2',
+          'line' => 'fact2=fact2value',
+          'path' => 'C:\ProgramData\PuppetLabs\facter\facts.d\facts.txt',
+        })
+      }
+    end
+  end
 end
