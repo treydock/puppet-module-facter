@@ -176,16 +176,16 @@ class facter (
     ensure  => 'directory',
     owner   => $facter_conf_dir_owner,
     group   => $facter_conf_dir_group,
-    mode    => $facter_conf_dir_mode_real,
+    mode    => $facter_conf_dir_mode,
     require => Exec["mkdir_p-${facter_conf_dir}"],
   }
   if ! empty($facter_conf) {
-    $facter_conf_json = to_json_pretty($facter_conf)
+    $facter_conf_json = stdlib::to_json_pretty($facter_conf)
     file { "${facter_conf_dir}/${facter_conf_name}":
       ensure  => 'file',
       owner   => $facter_conf_owner,
       group   => $facter_conf_group,
-      mode    => $facter_conf_mode_real,
+      mode    => $facter_conf_mode,
       content => "# File managed by Puppet, do not edit\n${facter_conf_json}",
     }
   }
